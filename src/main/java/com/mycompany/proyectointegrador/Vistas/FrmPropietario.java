@@ -44,7 +44,7 @@ public class FrmPropietario extends javax.swing.JFrame {
     /**
      * Creates new form FrmPropietarios
      */
-    public void FrmPropietario() {
+    public  FrmPropietario() {
         initComponents();
         inicializarFormulario();
     }
