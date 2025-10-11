@@ -60,7 +60,7 @@ public class Menu {
         System.out.print("Nombre: ");
         String nombre = sc.nextLine();
 
-        Departamento d = new Departamento(id, codigo, nombre);
+        Departamento d = new Departamento(1, "05", "Antioquia");
         departamentos.add(d);
         System.out.println("✅ Departamento registrado correctamente.");
     }

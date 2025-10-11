@@ -11,29 +11,53 @@ package com.mycompany.proyectointegrador;
 
 
 public class Departamento {
-    private String id;
+    private int id;
     private String codigoDane;
     private String nombre;
 
-    public Departamento(String id, String codigoDane, String nombre) {
+    public Departamento() {
+    }
+
+    public Departamento(int id, String codigoDane, String nombre) {
         this.id = id;
         this.codigoDane = codigoDane;
         this.nombre = nombre;
     }
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    // Getters y Setters
+    public int getId() {
+        return id;
+    }
 
-    public String getCodigoDane() { return codigoDane; }
-    public void setCodigoDane(String codigoDane) { this.codigoDane = codigoDane; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getCodigoDane() {
+        return codigoDane;
+    }
+
+    public void setCodigoDane(String codigoDane) {
+        this.codigoDane = codigoDane;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     @Override
     public String toString() {
-        return "Departamento{" + "id=" + id + ", codigoDane=" + codigoDane + ", nombre=" + nombre + '}';
+        return "Departamento{" +
+                "id=" + id +
+                ", codigoDane='" + codigoDane + '\'' +
+                ", nombre='" + nombre + '\'' +
+                '}';
     }
 }
+
 
 
