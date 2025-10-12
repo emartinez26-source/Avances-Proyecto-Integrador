@@ -9,24 +9,23 @@ package com.mycompany.proyectointegrador;
  * @author edward
  */
 
-
-
-
 public class Municipio {
-    private String id;
+    private int id;
     private String codigoDane;
     private String nombre;
     private Departamento departamento;
 
-    public Municipio(String id, String codigoDane, String nombre, Departamento departamento) {
+    public Municipio() {}
+
+    public Municipio(int id, String codigoDane, String nombre, Departamento departamento) {
         this.id = id;
         this.codigoDane = codigoDane;
         this.nombre = nombre;
         this.departamento = departamento;
     }
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
     public String getCodigoDane() { return codigoDane; }
     public void setCodigoDane(String codigoDane) { this.codigoDane = codigoDane; }
@@ -39,9 +38,15 @@ public class Municipio {
 
     @Override
     public String toString() {
-        return "Municipio{" + "id=" + id + ", codigoDane=" + codigoDane + ", nombre=" + nombre +
-                ", departamento=" + departamento.getNombre() + '}';
+        return "Municipio{" +
+                "id=" + id +
+                ", codigoDane='" + codigoDane + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", departamento=" + (departamento != null ? departamento.getNombre() : "N/A") +
+                '}';
     }
 }
+
+
 
 

@@ -10,13 +10,14 @@ package com.mycompany.proyectointegrador;
  */
 
 
+
+
 public class Departamento {
     private int id;
     private String codigoDane;
-    private String nombre;
+    private String nombre; // ✅ Este debe ser String, NO int
 
-    public Departamento() {
-    }
+    public Departamento() {}
 
     public Departamento(int id, String codigoDane, String nombre) {
         this.id = id;
@@ -24,40 +25,17 @@ public class Departamento {
         this.nombre = nombre;
     }
 
-    // Getters y Setters
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public String getCodigoDane() { return codigoDane; }
+    public void setCodigoDane(String codigoDane) { this.codigoDane = codigoDane; }
 
-    public String getCodigoDane() {
-        return codigoDane;
-    }
-
-    public void setCodigoDane(String codigoDane) {
-        this.codigoDane = codigoDane;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public String getNombre() { return nombre; } // ✅ Retorna String
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
     @Override
     public String toString() {
-        return "Departamento{" +
-                "id=" + id +
-                ", codigoDane='" + codigoDane + '\'' +
-                ", nombre='" + nombre + '\'' +
-                '}';
+        return nombre; // 👈 También puedes devolver solo el nombre
     }
 }
-
-
-

@@ -15,10 +15,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ *
+ * @author edward
+ */
 public class FrmMenu extends JFrame {
 
     private JPanel contentPane;
-    private JButton btnPropietario, btnAsistente, btnDepartamento, btnSalir;
+    private JButton btnPropietario, btnAsistente, btnDepartamento, btnMunicipio, btnSalir;
 
     public FrmMenu() {
         initComponents();
@@ -31,7 +35,7 @@ public class FrmMenu extends JFrame {
 
     private void configurarVentana() {
         setTitle("Menú Principal - Proyecto Integrador");
-        setSize(600, 450);
+        setSize(600, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -62,23 +66,26 @@ public class FrmMenu extends JFrame {
         contentPane.add(panelTitulo, BorderLayout.NORTH);
 
         // ======= Panel central (Botones) =======
-        JPanel panelBotones = new JPanel(new GridLayout(4, 1, 15, 15));
+        JPanel panelBotones = new JPanel(new GridLayout(5, 1, 15, 15));
         panelBotones.setBorder(BorderFactory.createEmptyBorder(40, 120, 40, 120));
         panelBotones.setBackground(new Color(236, 240, 241));
 
         btnPropietario = new JButton("Gestionar Propietarios");
         btnAsistente = new JButton("Gestionar Asistentes");
         btnDepartamento = new JButton("Gestionar Departamentos");
+        btnMunicipio = new JButton("Gestionar Municipios");
         btnSalir = new JButton("Salir");
 
         configurarBoton(btnPropietario);
         configurarBoton(btnAsistente);
         configurarBoton(btnDepartamento);
+        configurarBoton(btnMunicipio);
         configurarBoton(btnSalir);
 
         panelBotones.add(btnPropietario);
         panelBotones.add(btnAsistente);
         panelBotones.add(btnDepartamento);
+        panelBotones.add(btnMunicipio);
         panelBotones.add(btnSalir);
 
         contentPane.add(panelBotones, BorderLayout.CENTER);
@@ -91,7 +98,6 @@ public class FrmMenu extends JFrame {
         boton.setForeground(Color.WHITE);
         boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        // Efecto visual al pasar el mouse
         boton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 boton.setBackground(new Color(31, 97, 141));
@@ -118,6 +124,12 @@ public class FrmMenu extends JFrame {
             ventanaDepto.setVisible(true);
         });
 
+        // ======= NUEVO BOTÓN MUNICIPIO =======
+        btnMunicipio.addActionListener(e -> {
+            FrmMunicipio ventanaMun = new FrmMunicipio();
+            ventanaMun.setVisible(true);
+        });
+
         btnSalir.addActionListener(e -> {
             int opcion = JOptionPane.showConfirmDialog(
                 this, "¿Desea salir del sistema?", "Confirmación",
@@ -133,4 +145,3 @@ public class FrmMenu extends JFrame {
         SwingUtilities.invokeLater(() -> new FrmMenu().setVisible(true));
     }
 }
-
