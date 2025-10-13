@@ -17,7 +17,7 @@ public class FrmPlagas extends JFrame {
     private JTextField txtCodigo, txtNombre, txtDescripcion, txtNivelIncidencia, txtNivelAlerta;
     private JTable tablaPlagas;
     private DefaultTableModel modeloTabla;
-    private JButton btnGuardar, btnEditar, btnEliminar, btnLimpiar, btnSalir;
+    private JButton btnGuardar, btnEditar, btnEliminar, btnLimpiar, btnVolver;
     private ArrayList<Plaga> listaPlagas;
 
     public FrmPlagas() {
@@ -109,13 +109,13 @@ public class FrmPlagas extends JFrame {
         btnEditar = new JButton("Editar");
         btnEliminar = new JButton("Eliminar");
         btnLimpiar = new JButton("Limpiar");
-        btnSalir = new JButton("Salir");
+        btnVolver = new JButton("Volver");
 
         panelBotones.add(btnGuardar);
         panelBotones.add(btnEditar);
         panelBotones.add(btnEliminar);
         panelBotones.add(btnLimpiar);
-        panelBotones.add(btnSalir);
+        panelBotones.add(btnVolver);
 
         add(panelBotones, BorderLayout.SOUTH);
 
@@ -124,7 +124,10 @@ public class FrmPlagas extends JFrame {
         btnEditar.addActionListener(e -> editarPlaga());
         btnEliminar.addActionListener(e -> eliminarPlaga());
         btnLimpiar.addActionListener(e -> limpiarCampos());
-        btnSalir.addActionListener(e -> dispose());
+        btnVolver.addActionListener(e -> {
+            new FrmSubmenuInspeccion().setVisible(true);
+            dispose();
+        });
 
         // Cargar datos al hacer clic en la tabla
         tablaPlagas.getSelectionModel().addListSelectionListener(e -> {
