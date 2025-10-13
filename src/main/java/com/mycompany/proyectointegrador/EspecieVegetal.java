@@ -25,7 +25,7 @@ public class EspecieVegetal {
     private float densidad;
     private String descripcion;
 
-    // 🔹 Constructor
+    
     public EspecieVegetal(int id, String codigoRegistro, String nombre, float densidad, String descripcion) {
         this.id = id;
         this.codigoRegistro = codigoRegistro;
@@ -34,7 +34,7 @@ public class EspecieVegetal {
         this.descripcion = descripcion;
     }
 
-    // 🔹 Getters y Setters
+    
     public int getId() {
         return id;
     }
@@ -87,4 +87,3 @@ public class EspecieVegetal {
                 '}';
     }
 }
-

@@ -12,6 +12,7 @@ package com.mycompany.proyectointegrador.Vistas;
 
 
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -64,7 +65,7 @@ public class FrmPaginaPrincipal extends JFrame {
                 "Registra inspecciones fitosanitarias, cultivos inspeccionados y plagas detectadas.",
                 "🧪",
                 new Color(39, 174, 96),
-                e -> abrirVentana(new FrmInspeccion())
+                e -> abrirVentana(new FrmSubmenuInspeccion())
         ));
 
         panelCentral.add(crearTarjeta("Reportes",

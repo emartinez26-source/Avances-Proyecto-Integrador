@@ -12,17 +12,15 @@ package com.mycompany.proyectointegrador.Vistas;
 
 
 
+
+
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Submenú para gestionar Inspecciones, Cultivos y Plagas
- * @author edward
- */
 public class FrmSubmenuInspeccion extends JFrame {
 
     private JPanel contentPane;
-    private JButton btnInspeccionFito, btnCultivo, btnPlaga, btnVolver;
+    private JButton btnInspeccionFito, btnEspecieVegetal, btnPlaga, btnVolver;
 
     public FrmSubmenuInspeccion() {
         initComponents();
@@ -72,17 +70,17 @@ public class FrmSubmenuInspeccion extends JFrame {
         panelBotones.setBackground(new Color(236, 240, 241));
 
         btnInspeccionFito = new JButton("Registrar Inspección Fitosanitaria");
-        btnCultivo = new JButton("Registrar Cultivo");
+        btnEspecieVegetal = new JButton("Registrar Especie Vegetal");
         btnPlaga = new JButton("Registrar Plaga");
         btnVolver = new JButton("Volver al Menú Principal");
 
         configurarBoton(btnInspeccionFito);
-        configurarBoton(btnCultivo);
+        configurarBoton(btnEspecieVegetal);
         configurarBoton(btnPlaga);
         configurarBoton(btnVolver);
 
         panelBotones.add(btnInspeccionFito);
-        panelBotones.add(btnCultivo);
+        panelBotones.add(btnEspecieVegetal);
         panelBotones.add(btnPlaga);
         panelBotones.add(btnVolver);
 
@@ -113,13 +111,13 @@ public class FrmSubmenuInspeccion extends JFrame {
             dispose();
         });
 
-        btnCultivo.addActionListener(e -> {
-            new FrmCultivo().setVisible(true);
+        btnEspecieVegetal.addActionListener(e -> {
+            new FrmEspecieVegetal().setVisible(true);
             dispose();
         });
 
         btnPlaga.addActionListener(e -> {
-            new FrmPlaga().setVisible(true);
+            new FrmPlagas().setVisible(true);
             dispose();
         });
 
