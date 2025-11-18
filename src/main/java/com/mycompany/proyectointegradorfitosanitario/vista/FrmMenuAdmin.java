@@ -1,0 +1,260 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.proyectointegradorfitosanitario.vista;
+
+import com.mycompany.proyectointegradorfitosanitario.modelo.Usuario;
+import com.mycompany.proyectointegradorfitosanitario.vista.FrmVerInformesAdmin;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+
+/**
+ * Panel de Menú para Administrador
+ * Interfaz AZUL - Administración del Sistema
+ * @author Equipo Proyecto Integrador
+ * @version 1.0
+ */
+public class FrmMenuAdmin extends JFrame {
+    
+    private JPanel panelPrincipal;
+    private JPanel panelHeader;
+    private JLabel lblBienvenida;
+    private JLabel lblUsuario;
+    private JButton btnGestionarPropietarios;
+    private JButton btnGestionarAsistentes;
+    private JButton btnVerEspecies;
+    private JButton btnVerPlagas;
+    private JButton btnCerrarSesion;
+    private JButton btnVerInformes;
+
+    
+    private Usuario usuarioLogueado;
+    
+    /**
+     * Constructor - recibe el usuario logueado
+     */
+    public FrmMenuAdmin(Usuario usuario) {
+        this.usuarioLogueado = usuario;
+        inicializarComponentes();
+    }
+    
+    /**
+     * Inicializa todos los componentes de la interfaz
+     */
+    private void inicializarComponentes() {
+        // Configuración de la ventana
+        setTitle("Panel de Administrador - Sistema de Inspección Fitosanitaria");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(700, 650);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        
+        // Panel principal
+        panelPrincipal = new JPanel();
+        panelPrincipal.setLayout(null);
+        panelPrincipal.setBackground(new Color(245, 245, 245));
+        
+        // ===== PANEL HEADER (AZUL) =====
+        panelHeader = new JPanel();
+        panelHeader.setBounds(0, 0, 700, 100);
+        panelHeader.setBackground(new Color(33, 150, 243)); // AZUL
+        panelHeader.setLayout(null);
+        
+        lblBienvenida = new JLabel("PANEL DE ADMINISTRADOR");
+        lblBienvenida.setBounds(20, 15, 660, 35);
+        lblBienvenida.setFont(new Font("Arial", Font.BOLD, 22));
+        lblBienvenida.setForeground(Color.WHITE);
+        panelHeader.add(lblBienvenida);
+        
+        lblUsuario = new JLabel("👤 Logueado como: " + usuarioLogueado.getUsername() + " | Rol: " + usuarioLogueado.getRol());
+        lblUsuario.setBounds(20, 50, 660, 25);
+        lblUsuario.setFont(new Font("Arial", Font.ITALIC, 12));
+        lblUsuario.setForeground(new Color(220, 220, 220));
+        panelHeader.add(lblUsuario);
+        
+        panelPrincipal.add(panelHeader);
+        
+        // ===== BOTONES DE OPCIONES =====
+        
+        // 1. Gestionar Propietarios
+        btnGestionarPropietarios = crearBoton(
+            "🌾 Gestionar Propietarios",
+            50, 130, 300, 80,
+            new Color(0, 128, 96),
+            "Administra registros de productores agrícolas"
+        );
+        btnGestionarPropietarios.addActionListener(this::abrirGestionarPropietarios);
+        panelPrincipal.add(btnGestionarPropietarios);
+        
+        // 2. Gestionar Asistentes
+        btnGestionarAsistentes = crearBoton(
+            "🔧 Gestionar Asistentes",
+            350, 130, 300, 80,
+            new Color(0, 102, 204),
+            "Administra técnicos inspectores"
+        );
+        btnGestionarAsistentes.addActionListener(this::abrirGestionarAsistentes);
+        panelPrincipal.add(btnGestionarAsistentes);
+        
+        // 3. Ver Especies
+        btnVerEspecies = crearBoton(
+            "🌱 Ver Especies Vegetales",
+            50, 230, 300, 80,
+            new Color(139, 69, 19),
+            "Consulta catálogo de cultivos"
+        );
+        btnVerEspecies.addActionListener(this::abrirVerEspecies);
+        panelPrincipal.add(btnVerEspecies);
+        
+        // 4. Ver Plagas
+        btnVerPlagas = crearBoton(
+            "🐛 Ver Plagas",
+            350, 230, 300, 80,
+            new Color(255, 87, 34),
+            "Consulta catálogo de plagas fitosanitarias"
+        );
+        btnVerPlagas.addActionListener(this::abrirVerPlagas);
+        panelPrincipal.add(btnVerPlagas);
+        
+        
+        //5. Ver infromes
+        btnVerInformes = crearBoton(
+            "📊 Ver Informes",
+            50, 330, 300, 80,
+            new Color(33, 150, 243),
+            "Ver todas las inspecciones completadas del sistema"
+        );
+        btnVerInformes.addActionListener(e -> abrirVerInformes());
+        panelPrincipal.add(btnVerInformes);
+
+        
+        // 6. Cerrar Sesión
+        btnCerrarSesion = crearBoton(
+            "🚪 Cerrar Sesión",
+            200, 450, 300, 80,
+            new Color(211, 47, 47),
+            "Salir del sistema"
+        );
+        btnCerrarSesion.addActionListener(this::cerrarSesion);
+        panelPrincipal.add(btnCerrarSesion);
+        
+        // Agregar panel a la ventana
+        setContentPane(panelPrincipal);
+    }
+    
+    /**
+     * Método auxiliar para crear botones con estilo
+     */
+    private JButton crearBoton(String texto, int x, int y, int ancho, int alto, 
+                              Color color, String tooltip) {
+        JButton boton = new JButton(texto);
+        boton.setBounds(x, y, ancho, alto);
+        boton.setFont(new Font("Arial", Font.BOLD, 14));
+        boton.setBackground(color);
+        boton.setForeground(Color.WHITE);
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        boton.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 1));
+        boton.setToolTipText(tooltip);
+        boton.setFocusPainted(false);
+        return boton;
+    }
+    
+    // ===== ACCIONES DE BOTONES =====
+    
+    private void abrirGestionarPropietarios(ActionEvent e) {
+        System.out.println("\n📋 Abriendo: Gestionar Propietarios");
+        SwingUtilities.invokeLater(() -> {
+            FrmGestionarPropietarios frame = new FrmGestionarPropietarios();
+            frame.setVisible(true);
+        });
+    }
+
+    
+    private void abrirGestionarAsistentes(ActionEvent e) {
+        System.out.println("\n📋 Abriendo: Gestionar Asistentes");
+        SwingUtilities.invokeLater(() -> {
+            FrmGestionarAsistentes frame = new FrmGestionarAsistentes();
+            frame.setVisible(true);
+        });
+    }
+
+    
+    private void abrirVerEspecies(ActionEvent e) {
+        System.out.println("\n🌱 Abriendo: Gestionar Especies");
+        SwingUtilities.invokeLater(() -> {
+            FrmGestionarEspecies frame = new FrmGestionarEspecies();
+            frame.setVisible(true);
+        });
+    }
+    
+    private void abrirVerPlagas(ActionEvent e) {
+        System.out.println("\n🐛 Abriendo: Gestionar Plagas");
+        SwingUtilities.invokeLater(() -> {
+            FrmGestionarPlagas frame = new FrmGestionarPlagas();
+            frame.setVisible(true);
+        });
+    }
+    
+    
+    private void abrirGestionarDepartamentos(ActionEvent e) {
+        System.out.println("\n📍 Abriendo: Gestionar Departamentos");
+        SwingUtilities.invokeLater(() -> {
+            FrmGestionarDepartamentos frame = new FrmGestionarDepartamentos();
+            frame.setVisible(true);
+        });
+    }
+    
+    
+    private void abrirVerInformes() {
+        System.out.println("\n📊 Abriendo: Ver Informes");
+        SwingUtilities.invokeLater(() -> {
+            FrmVerInformesAdmin frame = new FrmVerInformesAdmin();
+            frame.setVisible(true);
+        });
+    }
+
+    
+    private void cerrarSesion(ActionEvent e) {
+        System.out.println("\n🚪 Cerrando sesión para: " + usuarioLogueado.getUsername());
+        
+        int confirmar = JOptionPane.showConfirmDialog(this,
+            "¿Estás seguro de que deseas cerrar sesión?",
+            "Confirmar cierre de sesión",
+            JOptionPane.YES_NO_OPTION);
+        
+        if (confirmar == JOptionPane.YES_OPTION) {
+            System.out.println("✅ Sesión cerrada. Volviendo a login...");
+            this.dispose();
+            
+            // Volver a la pantalla de login
+            SwingUtilities.invokeLater(() -> {
+                FrmLogin loginFrame = new FrmLogin();
+                loginFrame.setVisible(true);
+            });
+        }
+    }
+    
+    /**
+     * Main para probar la ventana
+     */
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            // Usuario de prueba
+            Usuario admin = new Usuario(
+                java.util.UUID.randomUUID(),
+                "admin",
+                "admin123",
+                "ADMIN",
+                "admin@ica.gov.co",
+                true,
+                java.time.LocalDateTime.now()
+            );
+            
+            FrmMenuAdmin frame = new FrmMenuAdmin(admin);
+            frame.setVisible(true);
+        });
+    }
+}
